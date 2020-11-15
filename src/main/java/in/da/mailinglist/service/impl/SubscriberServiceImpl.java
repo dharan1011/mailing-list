@@ -14,19 +14,27 @@ public class SubscriberServiceImpl implements SubscriberService {
     private SubscriberRepository repository;
 
     @Override
-    public ResponseEntity<String> subscribeGitaList(Subscriber subscriber) {
+    public ResponseEntity<Subscriber> subscribeGitaList(Subscriber subscriber) {
+        Subscriber response = null;
         if(!hasUserSubscribed(subscriber)){
-            repository.save(subscriber);
+            response = repository.save(subscriber);
         }
-        return ResponseEntity.ok("Subscribed");
+        if(response != null){
+            return ResponseEntity.ok(response);
+        }else{
+            return ResponseEntity.badRequest().build();
+        }
     }
 
     @Override
-    public ResponseEntity<String> unsubscribeGitaList(String subscriberId) {
-        if(!hasUserSubscribed(subscriberId)){
-            repository.deleteById(subscriberId);
+    public ResponseEntity<String> unsubscribeGitaList(String email) {
+        if(!hasUserSubscribed(email)){
+            long cnt = repository.deleteByEmail(email);
+            if(cnt > 0){
+                return ResponseEntity.ok("Unsubscribed");
+            }
         }
-        return ResponseEntity.ok("Unsubscribed");
+        return ResponseEntity.badRequest().build();
     }
 
     private boolean hasUserSubscribed(Subscriber subscriber){

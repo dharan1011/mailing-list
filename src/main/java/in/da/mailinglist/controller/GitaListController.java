@@ -7,21 +7,21 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("v1/gita")
-public class SubscriberController {
+public class GitaListController {
 
     final SubscriberService service;
 
-    public SubscriberController(SubscriberService service) {
+    public GitaListController(SubscriberService service) {
         this.service = service;
     }
 
     @PostMapping("/subscribe")
-    public ResponseEntity<String> subscribeGitaList(@RequestBody Subscriber subscriber){
+    public ResponseEntity<Subscriber> subscribeGitaList(@RequestBody Subscriber subscriber){
         return service.subscribeGitaList(subscriber);
     }
 
-    @GetMapping("/unsubscribe/{sid}")
-    public ResponseEntity<String> unSubscribeGitaList(@PathVariable String sid){
-        return service.unsubscribeGitaList(sid);
+    @GetMapping("/unsubscribe/{email}")
+    public ResponseEntity<String> unSubscribeGitaList(@PathVariable String email){
+        return service.unsubscribeGitaList(email);
     }
 }

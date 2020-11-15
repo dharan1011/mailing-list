@@ -7,4 +7,5 @@ import java.util.Optional;
 
 public interface SubscriberRepository extends MongoRepository <Subscriber, String>{
     Optional<Subscriber> findByEmail(String email);
+    Long deleteByEmail(String email);
 }
