@@ -1,6 +1,6 @@
 package in.da.mailinglist;
 
-import in.da.mailinglist.controller.GitaListController;
+import in.da.mailinglist.controller.MailListController;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -10,7 +10,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 class MailingListApplicationTests {
 
     @Autowired
-    GitaListController gitaListController;
+    MailListController gitaListController;
 
     @Test
     void contextLoads() {
