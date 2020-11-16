@@ -21,13 +21,13 @@ public class MailListControllerTest {
     @Autowired
     private MockMvc mvc;
 
-    private final Gson gson = new Gson();;
+    private final Gson gson = new Gson();
 
     @Test
     @Order(1)
     public void subscribeToGitaList() throws Exception {
         Subscriber stubSubscriber = new Subscriber("Dharan","Aditya","dharan.aditya@gmail.com");
-        this.mvc.perform(post("/v1/gita/subscribe")
+        this.mvc.perform(post("/v1/mail/subscribe")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(gson.toJson(stubSubscriber))).andExpect(status().isOk());
     }
@@ -36,7 +36,7 @@ public class MailListControllerTest {
     @Order(2)
     public void subscribeToGitaListRedundant() throws Exception {
         Subscriber stubSubscriber = new Subscriber("Dharan","Aditya","dharan.aditya@gmail.com");
-        this.mvc.perform(post("/v1/gita/subscribe")
+        this.mvc.perform(post("/v1/mail/subscribe")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(gson.toJson(stubSubscriber)))
                 .andExpect(status().isBadRequest());
@@ -46,14 +46,14 @@ public class MailListControllerTest {
     @Test
     @Order(3)
     public void unsubscribeToGitaList() throws Exception {
-        this.mvc.perform(get("/v1/gita/unsubscribe/dharan.aditya@gmail.com"))
+        this.mvc.perform(get("/v1/mail/unsubscribe/dharan.aditya@gmail.com"))
                 .andExpect(status().isOk());
     }
 
     @Test
     @Order(4)
     public void unsubscribeToGitaListRedundant() throws Exception {
-        this.mvc.perform(get("/v1/gita/unsubscribe/dharan.aditya@gmail.com"))
+        this.mvc.perform(get("/v1/mail/unsubscribe/dharan.aditya@gmail.com"))
                 .andExpect(status().isBadRequest());
     }
 }
