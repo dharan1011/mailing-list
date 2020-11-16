@@ -14,7 +14,7 @@ public class SubscriberServiceImpl implements SubscriberService {
     private SubscriberRepository repository;
 
     @Override
-    public ResponseEntity<Subscriber> subscribeGitaList(Subscriber subscriber) {
+    public ResponseEntity<Subscriber> subscribeMailList(Subscriber subscriber) {
         Subscriber response = null;
         if(!hasUserSubscribed(subscriber)){
             response = repository.save(subscriber);
@@ -27,7 +27,7 @@ public class SubscriberServiceImpl implements SubscriberService {
     }
 
     @Override
-    public ResponseEntity<String> unsubscribeGitaList(String email) {
+    public ResponseEntity<String> unsubscribeMailList(String email) {
         if(!hasUserSubscribed(email)){
             long cnt = repository.deleteByEmail(email);
             if(cnt > 0){
