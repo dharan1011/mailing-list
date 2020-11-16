@@ -1,14 +1,10 @@
 package in.da.mailinglist.service.impl;
 
-import in.da.mailinglist.model.Subscriber;
 import in.da.mailinglist.repository.SubscriberRepository;
 import in.da.mailinglist.service.MailingService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 public class MailingServiceImpl implements MailingService {
